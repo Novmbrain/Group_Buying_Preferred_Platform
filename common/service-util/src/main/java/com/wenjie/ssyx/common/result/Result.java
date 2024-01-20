@@ -1,6 +1,6 @@
 package com.wenjie.ssyx.common.result;
 
-import lombok.Builder;
+import lombok.Data;
 
 /**
  * @className: Result
@@ -9,7 +9,7 @@ import lombok.Builder;
  * @date: 13/01/2024
  **/
 
-@Builder
+@Data
 public class Result<T> {
   private Integer code;
   private String message;
@@ -19,13 +19,20 @@ public class Result<T> {
   private Result() {
   }
 
-  // Define a public static class to return a new instance of this class
+  // 设置数据,返回对象的方法
   public static <T> Result<T> build(T data, ResultCodeEnum resultCodeEnum) {
-    return (Result<T>) Result
-      .builder()
-      .data(data)
-      .code(resultCodeEnum.getCode())
-      .message(resultCodeEnum.getMessage()).build();
+    // 创建Resullt对象，设置值，返回对象
+    Result<T> result = new Result<>();
+    // 判断返回结果中是否需要数据
+    if (data != null) {
+      // 设置数据到result对象
+      result.setData(data);
+    }
+    // 设置其他值
+    result.setCode(resultCodeEnum.getCode());
+    result.setMessage(resultCodeEnum.getMessage());
+    // 返回设置值之后的对象
+    return result;
   }
 
   public static <T> Result<T> ok(T data) {

@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     return Result.fail(null);
   }
 
-  @ExceptionHandler(Exception.class)
+  @ExceptionHandler(CustomizedException.class)
   @ResponseBody
   public Result error(CustomizedException e) {
     e.printStackTrace();

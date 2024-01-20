@@ -12,8 +12,8 @@ import lombok.Data;
 
 @Data
 public class CustomizedException extends RuntimeException {
+  // Error code
   private Integer code;
-  private String message;
 
   public CustomizedException(Integer code, String message) {
     super(message);
@@ -24,4 +24,6 @@ public class CustomizedException extends RuntimeException {
     super(resultCodeEnum.getMessage());
     this.code = resultCodeEnum.getCode();
   }
+
+
 }
